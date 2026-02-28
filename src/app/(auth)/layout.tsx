@@ -10,7 +10,7 @@ export default function AuthLayout({
   const router = useRouter();
 
   const handleBackgroundClick = () => {
-    router.push("http://localhost:3000/");
+    router.push("https://ticket-support-kappa.vercel.app/");
   };
 
   return (
@@ -28,7 +28,7 @@ export default function AuthLayout({
       {/* Website as background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <iframe
-          src="http://localhost:3000/"
+          src="https://ticket-support-kappa.vercel.app/"
           className="w-full h-full scale-105 origin-center opacity-50 blur-[2px]"
           title="Website Preview"
         />

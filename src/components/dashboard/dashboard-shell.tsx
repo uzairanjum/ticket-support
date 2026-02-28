@@ -66,15 +66,15 @@ export function DashboardShell({ children, initialUser }: DashboardShellProps) {
   };
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       {/* Sidebar - Desktop */}
-      <aside className="hidden lg:flex w-64 flex-col fixed inset-y-0 border-r border-gray-200 bg-white">
-        <div className="flex h-16 items-center px-6 border-b border-gray-200">
+      <aside className="hidden lg:flex w-64 flex-col fixed inset-y-0 border-r border-gray-100/50 bg-white/80 backdrop-blur-xl">
+        <div className="flex h-16 items-center px-6 border-b border-gray-100/50">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="h-8 w-8 rounded-lg bg-[#005430] flex items-center justify-center shadow-lg shadow-[#005430]/20">
+            <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
               <Ticket className="h-4.5 w-4.5 text-white" />
             </div>
-            <span className="text-lg font-bold tracking-tight">TicketFlow</span>
+            <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">TicketFlow</span>
           </Link>
         </div>
 
@@ -86,40 +86,40 @@ export function DashboardShell({ children, initialUser }: DashboardShellProps) {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 group relative",
+                  "flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group relative",
                   isActive
-                    ? "bg-[#005430]/10 text-[#005430] shadow-sm"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
+                    ? "bg-gradient-to-r from-emerald-50 to-white text-emerald-700 shadow-sm shadow-emerald-500/10"
+                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900",
                 )}
               >
                 <item.icon
                   className={cn(
                     "h-4.5 w-4.5 transition-colors",
                     isActive
-                      ? "text-[#005430]"
-                      : "text-gray-500 group-hover:text-gray-900",
+                      ? "text-emerald-600"
+                      : "text-gray-400 group-hover:text-gray-900",
                   )}
                 />
                 {item.name}
                 {isActive && (
-                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-[#005430] rounded-r-full" />
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-emerald-500 rounded-r-full" />
                 )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="p-4 border-t border-gray-200 bg-gray-50">
+        <div className="p-4 border-t border-gray-100/50 bg-gray-50/50">
           {(user || !loading) && (
-            <div className="flex items-center gap-3 px-2 py-1">
-              <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-[#005430] to-[#51A26A] flex items-center justify-center text-white text-xs font-bold shadow-sm shrink-0">
+            <div className="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-white hover:shadow-sm transition-all cursor-pointer">
+              <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-xs font-bold shadow-sm shrink-0">
                 {user?.name?.[0]?.toUpperCase()}
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="text-sm font-semibold truncate leading-none mb-1">
                   {user?.name}
                 </span>
-                <span className="text-[10px] uppercase tracking-wider font-bold text-[#005430]/70 leading-none">
+                <span className="text-[10px] uppercase tracking-wider font-bold text-emerald-600/70 leading-none">
                   {user?.role === "team_member"
                     ? "Staff"
                     : user?.role

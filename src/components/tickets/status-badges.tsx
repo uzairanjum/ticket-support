@@ -8,9 +8,9 @@ export function StatusBadge({ status, className }: { status: TicketStatus; class
     return (
         <UiBadge
             variant="outline"
-            className={cn('gap-1.5 px-2.5 py-0.5 font-medium transition-colors', config.bg, config.color, className)}
+            className={cn('gap-1.5 px-2.5 py-0.5 font-medium text-xs rounded-full transition-all hover:scale-105', config.bg, config.color, className)}
         >
-            <span className={cn('h-1.5 w-1.5 rounded-full', config.dot)} />
+            <span className={cn('h-1.5 w-1.5 rounded-full animate-pulse', config.dot)} />
             {config.label}
         </UiBadge>
     );
@@ -21,7 +21,7 @@ export function TypeBadge({ type, className }: { type: TicketType; className?: s
     return (
         <UiBadge
             variant="secondary"
-            className={cn('gap-1.5 px-2.5 py-0.5 bg-secondary/50 text-secondary-foreground border-transparent', className)}
+            className={cn('gap-1.5 px-2.5 py-0.5 bg-gray-100/80 text-gray-700 border-transparent text-xs rounded-full font-medium', className)}
         >
             <span className="text-xs">{config.icon}</span>
             {config.label}

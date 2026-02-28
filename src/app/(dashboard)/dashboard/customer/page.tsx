@@ -59,10 +59,10 @@ export default async function CustomerDashboard({ searchParams }: PageProps) {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">
+            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
               Support Overview
             </h1>
-            <p className="text-muted-foreground mt-1">
+            <p className="text-gray-500 mt-1">
               Hello, {profile.name}. Track your support requests and their
               status.
             </p>
@@ -75,7 +75,8 @@ export default async function CustomerDashboard({ searchParams }: PageProps) {
           <StatsCard
             title="Total Requests"
             value={stats.total}
-            icon={<TicketIcon className="h-5 w-5 text-primary" />}
+            icon={<TicketIcon className="h-5 w-5 text-emerald-600" />}
+            color="text-gray-900"
           />
           <StatsCard
             title="Open"
@@ -100,7 +101,7 @@ export default async function CustomerDashboard({ searchParams }: PageProps) {
         {/* Tickets Table */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold tracking-tight">
+            <h2 className="text-xl font-semibold tracking-tight text-gray-800">
               Your Tickets
             </h2>
           </div>

@@ -12,7 +12,7 @@ import type {
 } from '@/types';
 
 // ─── Shared Helper for Manual Joins ──────────────────────
-async function attachUserProfiles(tickets: any[]): Promise<Ticket[]> {
+async function attachUserProfiles(tickets: Ticket[]): Promise<Ticket[]> {
     if (tickets.length === 0) return [];
     const supabase = await createClient();
 
@@ -22,20 +22,24 @@ async function attachUserProfiles(tickets: any[]): Promise<Ticket[]> {
         if (t.assign_to) userIds.add(t.assign_to);
     });
 
-    if (userIds.size === 0) return tickets as Ticket[];
+    if (userIds.size === 0) return tickets;
 
     const { data: users } = await supabase
         .from('users')
         .select('id, name, email')
         .in('id', Array.from(userIds));
 
-    const userMap = new Map((users || []).map((u) => [u.id, u]));
+    const userMap = new Map((users || []).map((u) => [u.id, u as User]));
 
-    return tickets.map((t) => ({
-        ...t,
-        customer: t.created_by ? userMap.get(t.created_by) || null : null,
-        staff: t.assign_to ? userMap.get(t.assign_to) || null : null,
-    })) as Ticket[];
+    return tickets.map((t) => {
+        const customer = t.created_by ? userMap.get(t.created_by) : undefined;
+        const staff = t.assign_to ? userMap.get(t.assign_to) : undefined;
+        return {
+            ...t,
+            customer,
+            staff,
+        };
+    });
 }
 
 // ─── Fetch Tickets (Server) ─────────────────────────────
@@ -265,10 +269,15 @@ export async function createTicket(ticket: CreateTicketDTO & { customer_id: numb
 export async function updateTicket(ticketId: number, updates: UpdateTicketDTO) {
     const supabase = await createClient();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const updateData: Record<string, unknown> = {};
+    if (updates.ticket_type !== undefined) updateData.ticket_type = updates.ticket_type;
+    if (updates.description !== undefined) updateData.description = updates.description;
+    if (updates.status !== undefined) updateData.status = updates.status;
+    if (updates.assign_to !== undefined) updateData.assign_to = updates.assign_to;
+
     const { data, error } = await supabase
         .from('tickets')
-        .update(updates as any)
+        .update(updateData)
         .eq('id', ticketId)
         .select()
         .single();

@@ -1,7 +1,7 @@
 'use client';
 
 import { formatDistanceToNow } from 'date-fns';
-import { Mail, Calendar, MoreVertical, UserCheck, Search } from 'lucide-react';
+import { Mail, Calendar, UserCheck, Search } from 'lucide-react';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 

@@ -25,7 +25,6 @@ import { Plus, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { createTicketAction } from '@/app/(dashboard)/actions';
 import { typeConfig } from '@/lib/constants';
-import { type TicketType } from '@/types';
 
 export function CreateTicketDialog() {
     const [open, setOpen] = useState(false);

@@ -5,7 +5,7 @@ import {
     getStaffMemberTickets,
     getDashboardStats,
 } from '@/services/tickets';
-import { StatsCard, StatsCardSkeleton } from '@/components/dashboard/stats-card';
+import { StatsCard } from '@/components/dashboard/stats-card';
 import { TicketTable, TicketTableSkeleton } from '@/components/tickets/ticket-table';
 import { TicketFiltersBar } from '@/components/tickets/ticket-filters';
 import { Pagination } from '@/components/tickets/pagination';

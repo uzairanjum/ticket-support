@@ -14,7 +14,12 @@ export function useRealtimeTickets(
     onTicketChange: TicketChangeHandler,
     filter?: { column: string; value: string }
 ) {
-    const stableOnChange = useCallback(onTicketChange, [onTicketChange]);
+    const stableOnChange = useCallback(
+        (payload: { eventType: 'INSERT' | 'UPDATE' | 'DELETE'; new: Ticket; old: Partial<Ticket> }) => {
+            onTicketChange(payload);
+        },
+        [onTicketChange]
+    );
 
     useEffect(() => {
         const supabase = createClient();

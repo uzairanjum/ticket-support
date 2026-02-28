@@ -28,7 +28,7 @@ export default function HomePage() {
         </Link>
         <div className="flex items-center gap-3">
           <Button variant="ghost" asChild className="font-medium">
-            <Link href="/login">Sign In</Link>
+            <Link href="/login">Log in</Link>
           </Button>
           <Button asChild className="shadow-lg shadow-primary/20 font-semibold">
             <Link href="/signup" className="gap-2">
@@ -61,7 +61,7 @@ export default function HomePage() {
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild className="h-12 px-8 text-base font-semibold">
-            <Link href="/login">Sign In</Link>
+            <Link href="/login">Log in</Link>
           </Button>
         </div>
       </section>
